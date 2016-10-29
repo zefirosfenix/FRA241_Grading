@@ -9,7 +9,7 @@ Grading.register_blueprint(Login)
 
 #default route
 @Grading.route('/')
-def a():
+def default():
     return redirect(url_for('login.login'))
 
 #run app
