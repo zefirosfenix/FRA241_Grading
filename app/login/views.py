@@ -1,7 +1,7 @@
 from flask import Flask,Blueprint, render_template
 
 # create Blueprint class with name importname Blueprintfolders
-Login = Blueprint('login',__name__,template_folder='',static_folder='app/login')
+Login = Blueprint('login',__name__,template_folder='',static_folder='')
 
 #declare url route
 @Login.route('/login')
