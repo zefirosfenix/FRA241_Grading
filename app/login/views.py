@@ -7,4 +7,4 @@ Login = Blueprint('login',__name__,template_folder='',static_folder='app/login')
 @Login.route('/login')
 # what we do in this route
 def login():
-    return render_template('template.html')
+    return render_template('login_from_w3.html')
