@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<title>Login_page</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- stylesheet from folder not in web!-->
+<link rel="stylesheet" href="../css/w3.css">
+<body>
+
+<header class="w3-container w3-teal">
+  <h1>Login</h1>
+</header>
+
+<div class="w3-container w3-half w3-margin-top">
+
+<form class="w3-container w3-card-4">
+
+<p>
+<input id="name" class="w3-input" type="text" style="width:90%" required>
+<label class="w3-label w3-validate">Username</label></p>
+<p>
+<input id="pass" class="w3-input" type="password" style="width:90%" required>
+<label class="w3-label w3-validate">Password</label></p>
+
+<p>
+<input id="milk" class="w3-check" type="checkbox" checked="checked">
+<label class="w3-validate">Stay logged in</label></p>
+
+<p>
+<button class="w3-btn w3-section w3-teal w3-ripple" onclick="checkLogin()"> Log in </button>
+<button type="button" class="w3-btn w3-red" onclick="cancel()">Cancel</button>
+</p>
+<span id="demo">///</span>
+<p>
+  <!--change # to input_your_email_page
+  should insert input_your_email_page-->
+<span class="w3-right w3-padding w3-hide-small"><a href="http://hotmail.com/">Forgot a password?</a></span>
+</p>
+
+
+</form>
+
+</div>
+<script>
+function checkLogin() {
+  var text;
+  var x = document.getElementById("name").value;
+  var y = document.getElementById("pass").value;
+  if (x == "wanway") {
+    if (y == "asdf") {
+      var str = "Free Web Building Tutorials!";
+      var result = str.link("http://www.w3schools.com");
+      document.getElementById("demos").innerHTML = result;;
+    }
+    else {
+      text = "invalid password";
+    }
+  }
+  else () {
+    text = "invalid pass or username";
+  }
+  document.getElementById("demo").innerHTML = text;
+}
+</script>
+
+</body>
+</html>
