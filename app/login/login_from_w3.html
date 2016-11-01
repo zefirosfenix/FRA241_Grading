@@ -1,8 +1,15 @@
 <!DOCTYPE html>
 <html>
+<meta http-equiv="refresh" content="disabled" id="meta-refresh">
+
+<script type="text/javascript">
+var mr = document.getElementById("meta-refresh");
+mr.parentNode.removeChild(mr);
+</script>
 <title>Login_page</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" type = text/css href="{{ url_for('static', filename='w3.css') }}">
+<!-- stylesheet from folder not in web!-->
+<link rel="stylesheet" href="w3.css">
 <body>
 
 <header class="w3-container w3-teal">
@@ -14,10 +21,10 @@
 <form class="w3-container w3-card-4">
 
 <p>
-<input class="w3-input" type="text" style="width:90%" required>
+<input id="name" class="w3-input" type="text" style="width:90%" required>
 <label class="w3-label w3-validate">Username</label></p>
 <p>
-<input class="w3-input" type="password" style="width:90%" required>
+<input id="pass" class="w3-input" type="password" style="width:90%" required>
 <label class="w3-label w3-validate">Password</label></p>
 
 <p>
@@ -25,40 +32,39 @@
 <label class="w3-validate">Stay logged in</label></p>
 
 <p>
-<button class="w3-btn w3-section w3-teal w3-ripple" onClick="checkLogin()" type="button"> Log in </button>
-<button type="button" class="w3-btn w3-red" onClick="cancel()">Cancel</button>
+<button class="w3-btn w3-red" onclick="return check()">Log in</button>
+<button type="button" class="w3-btn w3-red" onclick="cancel()">Cancel</button>
 </p>
-
-<p><!--change # to input_your_email_page-->
+<span id="demo" >///</span>
+<p>
+  <!--change # to input_your_email_page
+  should insert input_your_email_page-->
 <span class="w3-right w3-padding w3-hide-small"><a href="http://hotmail.com/">Forgot a password?</a></span>
 </p>
 
 </form>
 
 </div>
-
-<script>
-<!-- primary testusername and password-->
-<!-- if u have a database, change here -->
-function checkLogin() {
-    var username, password, x, y, text;
-    x = document.getElementById("name").value;
-    y = document.getElementById("password").value;
-    if (x == "wanway") {				<!--"wanway" should come from username in database-->
-       if (y == "asdf") {			   <!--"asdf" should come from password in database-->
-           text = "login";			   <!--change text to template.html-->
-       }
+<script type="text/javascript">
+function check(){
+  var text1 = "";
+  var username =document.getElementById('name').value;
+  var password = document.getElementById('pass').value;
+  if (username == "wanway"){
+    if(password=="asdf"){
+      text1 ="success";
+    }else {
+      text1 ="failed";
     }
-    else {
-           text = "unvalid username or password, try again"
-    }
-   document.getElementById("demo").innerHTML = text;
+  }
+  else {
+    text1 = "failed";
+  }
+document.getElementById('demo').innerHTML=text1;
+return false;
 }
 
-function cancel() {			<!--clear data in username field & password field-->
-	}
 </script>
 
 </body>
 </html>
-
