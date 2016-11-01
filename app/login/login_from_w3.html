@@ -1,9 +1,15 @@
 <!DOCTYPE html>
 <html>
+<meta http-equiv="refresh" content="disabled" id="meta-refresh">
+
+<script type="text/javascript">
+var mr = document.getElementById("meta-refresh");
+mr.parentNode.removeChild(mr);
+</script>
 <title>Login_page</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <!-- stylesheet from folder not in web!-->
-<link rel="stylesheet" href="../css/w3.css">
+<link rel="stylesheet" href="w3.css">
 <body>
 
 <header class="w3-container w3-teal">
@@ -26,16 +32,15 @@
 <label class="w3-validate">Stay logged in</label></p>
 
 <p>
-<button class="w3-btn w3-section w3-teal w3-ripple" onclick="return check()"> Log in </button>
+<button class="w3-btn w3-red" onclick="return check()">Log in</button>
 <button type="button" class="w3-btn w3-red" onclick="cancel()">Cancel</button>
 </p>
-<span id="demo">///</span>
+<span id="demo" >///</span>
 <p>
   <!--change # to input_your_email_page
   should insert input_your_email_page-->
 <span class="w3-right w3-padding w3-hide-small"><a href="http://hotmail.com/">Forgot a password?</a></span>
 </p>
-
 
 </form>
 
@@ -58,6 +63,7 @@ function check(){
 document.getElementById('demo').innerHTML=text1;
 return false;
 }
+
 </script>
 
 </body>
