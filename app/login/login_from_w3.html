@@ -1,70 +1,87 @@
 <!DOCTYPE html>
+
 <html>
 <meta http-equiv="refresh" content="disabled" id="meta-refresh">
 
 <script type="text/javascript">
-var mr = document.getElementById("meta-refresh");
-mr.parentNode.removeChild(mr);
+    var mr = document.getElementById("meta-refresh");
+    mr.parentNode.removeChild(mr);
 </script>
 <title>Login_page</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <!-- stylesheet from folder not in web!-->
-<link rel="stylesheet" href="w3.css">
+<link rel="stylesheet" type=text/css href="{{url_for('static',filename = 'w3.css')}}">
+
 <body>
 
-<header class="w3-container w3-teal">
-  <h1>Login</h1>
-</header>
+    <header class="w3-container w3-teal">
+        <h1>Login</h1>
+    </header>
 
-<div class="w3-container w3-half w3-margin-top">
 
-<form class="w3-container w3-card-4">
+    <div class="w3-container w3-half w3-margin-top">
 
-<p>
-<input id="name" class="w3-input" type="text" style="width:90%" required>
-<label class="w3-label w3-validate">Username</label></p>
-<p>
-<input id="pass" class="w3-input" type="password" style="width:90%" required>
-<label class="w3-label w3-validate">Password</label></p>
+        <form class="w3-container w3-card-4">
 
-<p>
-<input id="milk" class="w3-check" type="checkbox" checked="checked">
-<label class="w3-validate">Stay logged in</label></p>
+            <p>
+                <input id="name" class="w3-input" type="text" style="width:90%" required>
+                <label class="w3-label w3-validate">Username</label></p>
+            <p>
+                <input id="pass" class="w3-input" type="password" style="width:90%" required>
+                <label class="w3-label w3-validate">Password</label></p>
 
-<p>
-<button class="w3-btn w3-red" onclick="return check()">Log in</button>
-<button type="button" class="w3-btn w3-red" onclick="cancel()">Cancel</button>
-</p>
-<span id="demo" >///</span>
-<p>
-  <!--change # to input_your_email_page
+            <p>
+                <input id="milk" class="w3-check" type="checkbox" checked="checked">
+                <label class="w3-validate">Stay logged in</label></p>
+
+            <p>
+                <button class="w3-btn w3-red" onclick="return check()">Log in</button>
+                <button type="button" class="w3-btn w3-red" onclick="cancel()">Cancel</button>
+            </p>
+            <span id="demo">///</span>
+            <p>
+                <!--change # to input_your_email_page
   should insert input_your_email_page-->
-<span class="w3-right w3-padding w3-hide-small"><a href="http://hotmail.com/">Forgot a password?</a></span>
-</p>
+                <span class="w3-right w3-padding w3-hide-small"><a href="http://hotmail.com/">Forgot a password?</a></span>
+            </p>
 
-</form>
+        </form>
 
-</div>
-<script type="text/javascript">
-function check(){
-  var text1 = "";
-  var username =document.getElementById('name').value;
-  var password = document.getElementById('pass').value;
-  if (username == "wanway"){
-    if(password=="asdf"){
-      text1 ="success";
-    }else {
-      text1 ="failed";
-    }
-  }
-  else {
-    text1 = "failed";
-  }
-document.getElementById('demo').innerHTML=text1;
-return false;
-}
+    </div>
 
-</script>
+    <!--pull jquery for read JSON file from Python-->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script type=text/javascript>
+        var UserID=[];
+        var UserPassword=[];
+        $("button").click(function() {
+            $.getJSON('/background_process', function(data) {
+                    UserID = data.id;
+                    UserPassword = data.password;
+
+            });
+        });
+    </script>
+    <script type="text/javascript">
+        function check() {
+            var text1 = "";
+            var username = document.getElementById('name').value;
+            var password = document.getElementById('pass').value;
+            if ((username == 'wanway') || (username == 'wanwan') || (username == UserID)) {
+                if ((password == 'asdf') || (password == UserPassword)) {
+                    text1 = "success";
+                } else {
+                    text1 = "Failed";
+                }
+            } else {
+                text1 = "Failed";
+            }
+
+            document.getElementById('demo').innerHTML = text1;
+            return false;
+        }
+    </script>
 
 </body>
+
 </html>
