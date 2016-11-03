@@ -9,7 +9,7 @@ mr.parentNode.removeChild(mr);
 <title>Login_page</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <!-- stylesheet from folder not in web!-->
-<link rel="stylesheet" href="w3.css">
+<link rel="stylesheet" href="{{url_for('static',filename="w3.css")}}">
 <body>
 
 <header class="w3-container w3-teal">
@@ -18,7 +18,7 @@ mr.parentNode.removeChild(mr);
 
 <div class="w3-container w3-half w3-margin-top">
 
-<form class="w3-container w3-card-4">
+<form class="w3-container w3-card-4" id="form_login" >
 
 <p>
 <input id="name" class="w3-input" type="text" style="width:90%" required>
@@ -53,6 +53,8 @@ function check(){
   if (username == "wanway"){
     if(password=="asdf"){
       text1 ="success";
+      document.getElementById("form_login").action = "{{url_for('homepage.Home')}}";
+      return true;
     }else {
       text1 ="failed";
     }
