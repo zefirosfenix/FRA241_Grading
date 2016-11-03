@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <meta http-equiv="refresh" content="disabled" id="meta-refresh">
-
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 <script type="text/javascript">
 var mr = document.getElementById("meta-refresh");
 mr.parentNode.removeChild(mr);
@@ -32,7 +32,7 @@ mr.parentNode.removeChild(mr);
 <label class="w3-validate">Stay logged in</label></p>
 
 <p>
-<button class="w3-btn w3-red" onclick="return check()">Log in</button>
+<button class="w3-btn w3-red" onclick="return checkInServer()">Log in</button>
 <button type="button" class="w3-btn w3-red" onclick="cancel()">Cancel</button>
 </p>
 <span id="demo" >///</span>
@@ -46,6 +46,29 @@ mr.parentNode.removeChild(mr);
 
 </div>
 <script type="text/javascript">
+function checkInServer(){
+  var authentication;
+   $.ajax({url: "{{url_for('.background_process')}}",
+   async: false,
+   data: {
+    name: $('input[id="name"]').val(),
+    pass: $('input[id="pass"]').val(),
+  },
+  dataType: 'json',
+  success: function(data){
+  authentication=data.authen;
+  }
+ });
+  if (authentication){
+    document.getElementById('demo').innerHTML="success";
+    document.getElementById("form_login").action = "{{url_for('homepage.Home')}}";
+    return true;
+  }else{
+  document.getElementById('demo').innerHTML="failed";
+  return false;
+  }
+  }
+
 function check(){
   var text1 = "";
   var username =document.getElementById('name').value;

@@ -1,21 +1,11 @@
-from flask import Flask,Blueprint, render_template, jsonify, json
+from flask import Flask,Blueprint, render_template, jsonify, json,request
 import sqlite3
 
-
-ID = []
-Password = []
 # create Blueprint class with name importname Blueprintfolders
 Login = Blueprint('login',__name__,template_folder='',static_folder='')
 
-# import username and password from Data.db
-conn = sqlite3.connect('Data.db') #connect Data.db
-c = conn.cursor()
-cursor = c.execute("SELECT ID, Password from User") #read ID and password from conn
-ID = []
-Password = []
-for row in cursor:
-     ID.append(str(row[0]))
-     Password.append(str(row[1]))
+
+
 
 #declare url route
 @Login.route('/login')
@@ -26,6 +16,27 @@ def login():
 
 @Login.route('/background_process')
 def background_process():
-    return jsonify(id = ID,password = Password) #send sudo json file with id & password(don't create new files)
+    # import username and password from Data.db
+    conn = sqlite3.connect('Data.db')  # connect Data.db
+    c = conn.cursor()
+    id_from_form=request.values.get('name')
+    print id_from_form
+    password_from_form=request.values.get('pass')
+    print password_from_form
+    cursor1 = c.execute("SELECT ID, Password from User WHERE ID="+str(id_from_form))
+    a =cursor1.fetchone()
+
+    if(str(a[0])==str(id_from_form) and str(a[1])==str(password_from_form) ):
+        print 1
+        return jsonify(authen=True)
+    else:
+        print 2
+        return jsonify(authen=False)
+#    ID = []
+#    Password = []
+#    for row in cursor:
+#        ID.append(str(row[0]))
+#        Password.append(str(row[1]))
+#   return jsonify(id = ID,password = Password) #send sudo json file with id & password(don't create new files)
     
 
