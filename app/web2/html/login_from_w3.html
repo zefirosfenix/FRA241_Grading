@@ -12,7 +12,7 @@
 
 <div class="w3-container w3-half w3-margin-top">
 
-<form class="w3-container w3-card-4">
+<form class="w3-container w3-card-4" id="form_login" action="file:///C:/Users/fibo/Documents/GitHub/FRA241_Grading/app/web2/html/login_from_w3.html">
 
 <p>
 <input id="name" class="w3-input" type="text" style="width:90%" required>
@@ -26,10 +26,10 @@
 <label class="w3-validate">Stay logged in</label></p>
 
 <p>
-<button class="w3-btn w3-section w3-teal w3-ripple" onclick="return check()"> Log in </button>
+<input type="submit" class="w3-btn w3-section w3-teal w3-ripple" onclick="check()" value="login"></button>
 <button type="button" class="w3-btn w3-red" onclick="cancel()">Cancel</button>
 </p>
-<span id="demo">///</span>
+<span id="demo"></span>
 <p>
   <!--change # to input_your_email_page
   should insert input_your_email_page-->
@@ -46,8 +46,9 @@ function check(){
   var username =document.getElementById('name').value;
   var password = document.getElementById('pass').value;
   if (username == "wanway"){
-    if(password=="asdf"){
-      text1 ="success";
+    if(password=="asdf"){             /*username&password are correct*/
+      text1 ="success";               /*when click login page will change to grading's homepage*/
+      document.getElementById("form_login").action = "file:///C:/Users/fibo/Documents/GitHub/FRA241_Grading/app/web2/html/template.html";
     }else {
       text1 ="failed";
     }
