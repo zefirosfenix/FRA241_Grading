@@ -47,6 +47,7 @@ mr.parentNode.removeChild(mr);
 </div>
 <script type="text/javascript">
 function checkInServer(){
+  var username=document.getElementById('name').value;
   var authentication;
    $.ajax({url: "{{url_for('.background_process')}}",
    async: false,
@@ -61,7 +62,7 @@ function checkInServer(){
  });
   if (authentication){
     document.getElementById('demo').innerHTML="success";
-    document.getElementById("form_login").action = "{{url_for('homepage.Home')}}";
+    document.getElementById("form_login").action = "{{url_for('homepage.Home',url_user_id="username")}}".replace('username',username);
     return true;
   }else{
   document.getElementById('demo').innerHTML="failed";
@@ -76,7 +77,7 @@ function check(){
   if (username == "wanway"){
     if(password=="asdf"){
       text1 ="success";
-      document.getElementById("form_login").action = "{{url_for('homepage.Home')}}";
+      document.getElementById("form_login").action = "{{url_for('homepage.Home',url_user_id="{{username)}}")}}";
       return true;
     }else {
       text1 ="failed";
