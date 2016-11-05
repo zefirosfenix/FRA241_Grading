@@ -35,7 +35,7 @@ mr.parentNode.removeChild(mr);
 <button class="w3-btn w3-red" onclick="return checkInServer()">Log in</button>
 <button type="button" class="w3-btn w3-red" onclick="cancel()">Cancel</button>
 </p>
-<span id="demo" >///</span>
+<span id="demo" ></span>
 <p>
   <!--change # to input_your_email_page
   should insert input_your_email_page-->
@@ -61,35 +61,14 @@ function checkInServer(){
   }
  });
   if (authentication){
-    document.getElementById('demo').innerHTML="success";
+    document.getElementById('demo').innerHTML="";
     document.getElementById("form_login").action = "{{url_for('homepage.Home',url_user_id="username")}}".replace('username',username);
     return true;
   }else{
-  document.getElementById('demo').innerHTML="failed";
+  document.getElementById('demo').innerHTML="Your username or password is wrong";
   return false;
   }
   }
-
-function check(){
-  var text1 = "";
-  var username =document.getElementById('name').value;
-  var password = document.getElementById('pass').value;
-  if (username == "wanway"){
-    if(password=="asdf"){
-      text1 ="success";
-      document.getElementById("form_login").action = "{{url_for('homepage.Home',url_user_id="{{username)}}")}}";
-      return true;
-    }else {
-      text1 ="failed";
-    }
-  }
-  else {
-    text1 = "failed";
-  }
-document.getElementById('demo').innerHTML=text1;
-return false;
-}
-
 </script>
 
 </body>

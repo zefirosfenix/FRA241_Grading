@@ -13,4 +13,4 @@ def user_id(endpoint,url_user_id):
 #Homepage_ waiting for template
 @Homepage.route('/Home')
 def Home(url_user_id):
-    return "hah"
+    return render_template("template.html")
