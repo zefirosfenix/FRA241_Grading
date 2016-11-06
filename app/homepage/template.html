@@ -59,6 +59,10 @@
       <h1 class="w3-text-teal">My profile</h1>
         <div class="w3-row w3-container">
           <div class="w3-col l6 w3-white w3-left">
+            {% for x in g.show_list %}
+              <h3><b>{{x}}</b></h3>
+              <p> {{g.user.Profile[x]}}</p>
+            {% endfor %}
             <h3><b>my poem</b></h3>
             <p>roses are red</p>
             <p>violets are blue</p>

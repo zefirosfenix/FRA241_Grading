@@ -30,7 +30,6 @@ class User:
         # make it into dict
         Profiledict = {}
         for x, y in zip(k, column):
-            print x, y
             Profiledict[str(y)] = str(x)
         # close connection
         c.close()
