@@ -36,4 +36,11 @@ class User:
         # return the dict
         return Profiledict
 
+    def Get_picture(self):
+        p = 'picture.jpg'
+
+    def Get_subject(self):
+        connect = sqlite3.connect('Data.db')
+        subject = connect
+
 
