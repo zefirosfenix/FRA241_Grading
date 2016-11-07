@@ -117,32 +117,32 @@ except Exception:
 
 
 # insert data in User table
-def UserInsert(ID, Password, Title, Name, Surname, E_mail, Role, Faculty, Major, Enrol_Year, Picture): #Picture default is NULL
+def UserInsert(ID, Password, Title, Name, Surname, E_mail, Role, Faculty, Major, Enrol_Year, Picture): #ID and Password aren't NULL
     c.execute("""INSERT INTO `User` (`ID`, `Password`, `Title`, `Name`, `Surname`, `E-mail`, `Role`, `Faculty`, `Major`, `Enrol-Year`, `Picture`) VALUES
     (?,?,?,?,?,?,?,?,?,?,?);""",(ID, Password, Title, Name, Surname, E_mail, Role, Faculty, Major, Enrol_Year, Picture))
 
 # insert data in Enrol table
-def EnrolInsert(ID,Subject_ID,Subject_Year):
+def EnrolInsert(ID,Subject_ID,Subject_Year): #not NULL all
     c.execute("""INSERT INTO `Enrol` (`ID`, `Subject_ID`, `subject_Year`) VALUES
     (?, ?, ?);""",(ID,Subject_ID,Subject_Year))
 
-#insert data in table Group
-def groupInsert(Subject_ID,Year,WorkID,ID):
+#insert data in Group table
+def groupInsert(Subject_ID,Year,WorkID,ID): #not NULL all
     c.execute("""INSERT INTO `group` (`Subject_ID`, `Year`, `WorkID`, `ID,) VALUES
      (?,?,?,?)""",(Subject_ID,Year,WorkID,ID))
 
-#insert data in table media
-def mediaInsert(Subject_ID,Year,Description,FullMark,Grading):
+#insert data in media table
+def mediaInsert(Subject_ID,Year,Description,FullMark,Grading): #Subject_ID and Year aren't NULL
     c.execute("""INSERT INTO `media` (`Subject_ID`,`Year`,`Description`,`FullMark`,`Grading`) VALUES
      (?,?,?,?,?)""",(Subject_ID,Year,Description,FullMark,Grading))
 
 #insert data in subject table
-def subjectInsert(Subject_ID, Year, Description, FullMark, Grading): #Description and Grading default are NULL
+def subjectInsert(Subject_ID, Year, Description, FullMark, Grading): #Description, FullMark and Grading default are NULL
     c.execute("""INSERT INTO `subject` (`Subject_ID`, `Year`, `Description`, `FullMark`, `Grading`) VALUES
     (?,?,?,?,?);""",(Subject_ID,Year,Description,FullMark,Grading))
 
 #insert data in Submitwork table
-def subjectInsert(Subject_ID, Year, WorkID, ID, Address, Status, Mark): #Description and Grading default are NULL
+def subjectInsert(Subject_ID, Year, WorkID, ID, Address, Status, Mark): #Address, status and Mark default are NULL
     c.execute("""INSERT INTO `Submitwork` (`Subject_ID`, `Year`, `WorkID`, `ID`, `Address`, `Status`, `Mark`) VALUES
     (?,?,?,?,?,?,?);""",(Subject_ID, Year, WorkID, ID, Address, Status, Mark))
 
@@ -152,9 +152,9 @@ def workInsert(Subject_ID, Year, WorkID, Deadlines, status, type, FullMark, Grad
     (?,?,?,?,?,?,?,?,?);""",(Subject_ID, Year, WorkID, Deadlines, status, type, FullMark, Grading, lim_member))
 
 
-# UserInsert() #insert User #Picture default is NULL
-# subjectInsert(Subject_ID='FRA142',Year='59',Description=None,FullMark=None,Grading=None) #insert subject # Description and Grading default are NULL
-# workInsert(Subject_ID='FRA221',Year='59',WorkID='6') # insert work #Subject_ID, Year, WorkID aren't NULL
+# UserInsert() #insert User
+# subjectInsert(Subject_ID='FRA142',Year='59',Description=None,FullMark=None,Grading=None) #insert subject
+# workInsert(Subject_ID='FRA221',Year='59',WorkID='6') # insert work
 # EnrolInsert('58340500017','FRA221','59')
 
 
