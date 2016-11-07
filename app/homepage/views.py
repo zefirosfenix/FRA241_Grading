@@ -20,7 +20,9 @@ def user_id(endpoint,url_user_id):
     g.show_list = []
     g.picture = ""
     for x in tableField:
-        if str(x[1]) == "Picture" or str(x[1]) == "Password":
+        if str(x[1]) == "Picture" :
+            g.picture = 'picture.jpg'
+        elif  str(x[1]) == "Password" :
             pass
         else:
             g.show_list.append(str(x[1]))
