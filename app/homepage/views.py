@@ -18,6 +18,7 @@ def user_id(endpoint,url_user_id):
     tableField = c.execute("PRAGMA table_info(User)")
     tableField = tableField.fetchall()
     g.show_list = []
+    g.picture = ""
     for x in tableField:
         if str(x[1]) == "Picture" or str(x[1]) == "Password":
             pass
