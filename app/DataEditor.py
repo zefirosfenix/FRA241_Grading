@@ -1,16 +1,15 @@
 import sqlite3
 
 """ for make table and input manual data """
-
 conn = sqlite3.connect('Data.db') #connect db name Data.db
 print "Connect : pass"
 c= conn.cursor()    #prepare from modify db
-
+null = None
 
 # create table name user
 
 # c.executescript("""DROP TABLE User""") #delete table
-# c.executescript("""DELETE FROM subject WHERE Subject_ID = 'FRA241'""") #delete data in table subject
+# c.executescript("""DELETE FROM subject WHERE Subject_ID = 'FRA142'""") #delete data in table subject
 # c.executescript("""DELETE FROM work WHERE Subject_ID ='FRA222'""") #delete work
 
 try :
@@ -119,30 +118,29 @@ except Exception:
 
 
 # insert data in Enrol table
-def EnrolInsert():
+def EnrolInsert(ID,Subject_ID,Subject_Year):
     c.execute("""INSERT INTO `Enrol` (`ID`, `Subject_ID`, `subject_Year`) VALUES
-    (58340500017, 'FRA222', 59);""")
+    (?, ?, ?);""",(ID,Subject_ID,Subject_Year))
 
 #insert data in subject table
-def subjectInsert():
+def subjectInsert(Subject_ID, Year, Description, FullMark, Grading): #Description and Grading default are NULL
     c.execute("""INSERT INTO `subject` (`Subject_ID`, `Year`, `Description`, `FullMark`, `Grading`) VALUES
-    ('FRA222', 59, NULL, 100, NULL);""")
+    (?,?,?,?,?);""",(Subject_ID,Year,Description,FullMark,Grading))
 
 # insert data in User table
-def UserInsert():
+def UserInsert(ID, Password, Title, Name, Surname, E_mail, Role, Faculty, Major, Enrol_Year, Picture): #Picture default is NULL
     c.execute("""INSERT INTO `User` (`ID`, `Password`, `Title`, `Name`, `Surname`, `E-mail`, `Role`, `Faculty`, `Major`, `Enrol-Year`, `Picture`) VALUES
-    (58340500017, 'Boomming1*', 'Mr.', 'Chaiyaporn', 'Boonyasathian', 'chaiya45689@gmail.com', 'student', 'FIBO', 'robotic and automation', '58', NULL);
-    """)
+    (?,?,?,?,?,?,?,?,?,?,?);""",(ID, Password, Title, Name, Surname, E_mail, Role, Faculty, Major, Enrol_Year, Picture))
 
 #insert data in Work table
-def workInsert():
+def workInsert(Subject_ID, Year, WorkID, Deadlines, status, type, FullMark, Grading, lim_member): #Subject_ID, Year, WorkID aren't NULL
     c.execute("""INSERT INTO `work` (`Subject_ID`, `Year`, `WorkID`, `Deadlines`, `status`, `type`, `FullMark`, `Grading`, `lim_member`) VALUES
-    ('FRA221', 59, 5, NULL, NULL, NULL, 10, NULL, NULL);
-    """)
+    (?,?,?,?,?,?,?,?,?);""",(Subject_ID, Year, WorkID, Deadlines, status, type, FullMark, Grading, lim_member))
 
 # UserInsert() #insert User
-# subjectInsert() #insert subject
-workInsert() # insert work
+subjectInsert(Subject_ID='FRA142',Year='59',Description=None,FullMark=None,Grading=None) #insert subject
+# workInsert(Subject_ID='FRA221',Year='59',WorkID='6') # insert work
+# EnrolInsert('58340500017','FRA221','59')
 
 conn.commit() #save data into db
 print("-----------User-----------")
@@ -151,10 +149,13 @@ for row in cursor1:
     print "ID = ", row[0]
     print "Password = ", row[1]
 print("-----------subject-----------")
-cursor2 = c.execute("SELECT Subject_ID, Year from subject")
+cursor2 = c.execute("SELECT Subject_ID, Year, Description,FullMark, Grading from subject")
 for row in cursor2:
     print "Subject ID = ",row[0]
     print "Year = ",row[1]
+    print "Description = ",row[2]
+    print "FullMark = ",row[3]
+    print "Grading = ",row[4]
 print("-----------work-----------")
 cursor3 = c.execute("SELECT Subject_ID, Year, WorkID, FullMark from work")
 for row in cursor3:
@@ -162,7 +163,14 @@ for row in cursor3:
     print "Year = ",row[1]
     print "WorkID = ",row[2]
     print "FullMark = ",row[3]
+print("-----------enrol-----------")
+cursor4 = c.execute("SELECT ID, Subject_ID, subject_year from Enrol")
+for row in cursor3:
+    print "ID = ",row[0]
+    print "Subject ID = ",row[1]
+    print "Subject yaer = ",row[2]
 
 cursor1.close()
 cursor2.close()
 cursor3.close()
+cursor4.close()
